@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<assets xmlns="http://www.univ-grenoble-alpes.fr/l3miage/game"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/game ../xsd/assets.xsd">
+
+    <!-- the width and height are equal to the picture size -->
+    <!-- we need to add the footprint-->
+
+
+    <!-- the player nd the guard -->
+    <asset name="player" file="player.png" width="160" height="56" />
+    <asset name="guard" file="guard.png" width="160" height="60" />
+
+    <!-- the items-->
+    <asset name="key" file="key.png" width="24" height="24"/>
+    <asset name="coffee" file="coffee.png" width="24" height="28"/>
+
+
+    <!-- the floor assts -->
+    <asset name="floor_corridor" file="floor_corridor.png" width="40" height="40"/>
+    <asset name="floor_classroom" file="floor_classroom.png" width="40" height="40"/>
+
+
+    <!-- the wall  assets -->
+    <asset name="wall_doorway" file="wall_doorway.png" width="40" height="60"/>
+    <asset name="wall_top" file="wall_top.png" width="40" height="40" solid="true" />
+    <asset name="wall_front" file="wall_front.png" width="40" height="60" solid="true" />
+    <asset name="wall_corner_inner_left" file="wall_corner_inner_left.png" width="40" height="60" solid="true" />
+    <asset name="wall_corner_inner_right" file="wall_corner_inner_right.png" width="40" height="60" solid="true" />
+    <asset name="wall_corner_outer_left" file="wall_corner_outer_left.png" width="40" height="60" solid="true" />
+    <asset name="wall_corner_outer_right" file="wall_corner_outer_right.png" width="40" height="60" solid="true" />
+    <asset name="wall_window" file="wall_window.png" width="40" height="60" solid="true" />
+
+
+    <!-- the lights assets -->
+    <asset name="fx_camera_cone" file="fx_camera_cone.png" width="220" height="140" />
+    <asset name="fx_flashlight_cone" file="fx_flashlight_cone.png" width="240" height="140" />
+    <asset name="fx_lamp_pool" file="fx_lamp_pool.png" width="220" height="140" />
+    <asset name="fx_moonlight" file="fx_moonlight.png" width="120" height="150" />
+    <asset name="fx_shadow_east" file="fx_shadow_east.png" width="24" height="40" />
+    <asset name="fx_shadow_south" file="fx_shadow_south.png" width="40" height="24" />
+
+    <!-- the wallObjects-->
+    <asset name="board" file="board.png" width="160" height="40"/>
+    <asset name="camera" file="camera.png" width="128" height="32"/>
+
+    <!-- furniture-->
+    <asset name="desk" file="desk.png" width="80" height="60" solid="true"/>
+    <asset name="teacher_desk" file="teacher_desk.png" width="120" height="60" solid="true"/>
+    <asset name="bookshelf" file="bookshelf.png" width="80" height="60" solid="true"/>
+    <asset name="lockers" file="lockers.png" width="40" height="70" solid="true"/>
+    <asset name="vending_machine" file="vending_machine.png" width="48" height="72" solid="true"/>
+    <asset name="plant" file="plant.png" width="32" height="48" solid="true"/>
+    <asset name="bin" file="bin.png" width="24" height="28" solid="true"/>
+    <asset name="bench" file="bench.png" width="80" height="40" solid="true"/>
+    <asset name="stairs" file="stairs.png" width="120" height="120"/>
+    <asset name="exit" file="exit.png" width="120" height="100"/>
+</assets>
