@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.univ-grenoble-alpes.fr/l3miage/game ../xsd/assets.xsd">
 
-    <!-- the width and height are equal to the picture size -->
+    <!-- the width and height are equal to the picture size and the file is the image name  -->
     <!-- we need to add the footprint-->
 
 
