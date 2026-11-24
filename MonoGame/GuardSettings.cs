@@ -1,3 +1,4 @@
-public class GuardSettings {
-    
+public class GuardSettings : Settings {
+       private uint Speed;
+       private uint TouchDistance; 
 }
