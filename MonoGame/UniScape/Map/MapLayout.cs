@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace UniScape.Map
 {
-    // Small helpers that turn the map pieces into a list of pictures to draw.
+    // Helpers that turn the map pieces into the list of images we actually draw
     public static class MapLayout
     {
-        // Turns an area into its tiles, row by row, left to right.
+        // Splits an area into its tiles, row by row from left to right
         public static List<Placement> Expand(Area area, int tileWidth, int tileHeight)
         {
             var tiles = new List<Placement>();
@@ -21,15 +21,15 @@ namespace UniScape.Map
             return tiles;
         }
 
-        // Where an object "touches the floor": its bottom edge (y + height).
+        // The bottom edge of an object, where it touches the floor
         public static int SortKey(Placement placement, int height)
         {
             return placement.Y + height;
         }
 
-        // Furniture is drawn from the top of the screen to the bottom, so an object lower
-        // on the screen covers the one behind it. OrderBy is a *stable* sort: two objects with
-        // the same key keep the order of floor.xml (List.Sort would not guarantee that).
+        // Furniture is drawn from top to bottom so things lower on the screen cover what's behind them.
+        // OrderBy is a stable sort, so two objects with the same key stay in the floor.xml order.
+        // List.Sort doesn't guarantee that.
         public static List<Placement> SortByBottom(IEnumerable<Placement> placements, Func<string, int> heightOf)
         {
             return placements.OrderBy(p => SortKey(p, heightOf(p.Asset))).ToList();

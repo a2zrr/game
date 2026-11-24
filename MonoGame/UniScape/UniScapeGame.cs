@@ -5,8 +5,8 @@ using UniScape.Map;
 
 namespace UniScape
 {
-    // Current step: the ground floor map, with the student walking freely on top of it.
-    // There is no collision: the map is only a picture.
+    // The ground floor with the student walking around on it.
+    // Only walls block the student, furniture and everything else can be walked over.
     public class UniScapeGame : Game
     {
         private readonly GraphicsDeviceManager _graphics;
@@ -27,7 +27,7 @@ namespace UniScape
 
         protected override void Initialize()
         {
-            _player = new Player(GroundFloorMap.PlayerStart);
+            _player = new Player(GroundFloorMap.PlayerStart, WallCollisions.GroundFloor);
             base.Initialize(); // calls LoadContent()
         }
 
@@ -38,7 +38,7 @@ namespace UniScape
             _playerTexture = TextureLoader.Load(GraphicsDevice, "player.png");
         }
 
-        // Called once per frame, before Draw: read the keyboard and move the student.
+        // Runs every frame before Draw, reads the keyboard and moves the student
         protected override void Update(GameTime gameTime)
         {
             KeyboardState keys = Keyboard.GetState();
@@ -47,28 +47,28 @@ namespace UniScape
                 Exit();
             }
 
-            // Time since the last frame, in seconds (about 0.0167 s at 60 FPS).
-            // Moving by "speed x seconds" gives the same speed at any frame rate.
+            // Time since the last frame in seconds, about 0.0167 at 60 FPS.
+            // Multiplying the speed by it keeps the speed the same whatever the frame rate.
             float seconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _player.Update(InputReader.ReadMove(keys), seconds);
 
             base.Update(gameTime);
         }
 
-        // Called once per frame, after Update: draw everything, back to front.
+        // Runs every frame after Update and draws everything from back to front
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // AlphaBlend works with the premultiplied textures made by TextureLoader.
+            // AlphaBlend goes with the premultiplied textures from TextureLoader
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp);
 
-            // 1. The map first...
+            // Map first
             _map.Draw(_spriteBatch);
 
-            // 2. ...then the student, so they are always drawn on top of the map.
-            // The position is rounded to whole pixels so the pixel art stays sharp
-            // (a sprite drawn at x = 10.4 would be blurred by the linear filter).
+            // Then the student, so they're always drawn on top of the map.
+            // The position is rounded to whole pixels to keep the pixel art sharp,
+            // otherwise something like x = 10.4 gets blurred by the linear filter.
             Vector2 screenPosition = new Vector2(
                 System.MathF.Round(_player.Position.X),
                 System.MathF.Round(_player.Position.Y));

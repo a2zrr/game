@@ -21,7 +21,7 @@ public class PlayerTests
     [InlineData(-1, 0, Facing.Left)]
     [InlineData(0, 1, Facing.Down)]
     [InlineData(0, -1, Facing.Up)]
-    [InlineData(1, 1, Facing.Right)]   // a perfect diagonal goes to left/right
+    [InlineData(1, 1, Facing.Right)]   // a perfect diagonal counts as left or right
     [InlineData(-1, -1, Facing.Left)]
     public void Facing_follows_the_dominant_axis(float x, float y, Facing expected)
     {
@@ -87,7 +87,7 @@ public class PlayerTests
         Assert.Equal(new Vector2(-1, -1), InputReader.ReadMove(new KeyboardState(Keys.Q, Keys.Z)));      // diagonal with ZQSD
         Assert.Equal(new Vector2(1, 1), InputReader.ReadMove(new KeyboardState(Keys.Right, Keys.Down)));  // diagonal with arrows
         Assert.Equal(new Vector2(1, -1), InputReader.ReadMove(new KeyboardState(Keys.D, Keys.Up)));       // mixed schemes
-        Assert.Equal(new Vector2(-1, 0), InputReader.ReadMove(new KeyboardState(Keys.Q, Keys.Left)));     // same direction twice: not faster
+        Assert.Equal(new Vector2(-1, 0), InputReader.ReadMove(new KeyboardState(Keys.Q, Keys.Left)));     // same direction twice isn't faster
         Assert.Equal(Vector2.Zero, InputReader.ReadMove(new KeyboardState(Keys.Q, Keys.D)));              // opposite keys cancel
         Assert.Equal(Vector2.Zero, InputReader.ReadMove(new KeyboardState()));                            // nothing pressed
     }
@@ -95,7 +95,7 @@ public class PlayerTests
     [Fact]
     public void Movement_does_not_depend_on_the_frame_rate()
     {
-        // One second at 30 FPS, at 60 FPS and at 144 FPS must end at the same place.
+        // One second at 30, 60 or 144 FPS should end up at the same spot
         float[] frameRates = { 30, 60, 144 };
         foreach (float fps in frameRates)
         {
@@ -109,10 +109,10 @@ public class PlayerTests
     }
 
     [Fact]
-    public void Player_walks_over_furniture_and_walls()
+    public void Without_walls_nothing_blocks_the_student()
     {
-        // Start on the desk at (80, 280) and walk up through the classroom wall at y = 40:
-        // nothing stops the student (there is no collision), only the top of the screen.
+        // Without a wall list nothing blocks the player except the top of the screen.
+        // The real game passes WallCollisions.GroundFloor, see WallTests.
         var player = new Player(new Vector2(80, 280));
         player.Update(new Vector2(0, -1), 1f); // 150 px up
         Assert.Equal(130, player.Position.Y, 3);

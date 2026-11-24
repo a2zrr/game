@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace UniScape.Map
 {
-    // Draws the ground floor map. The pictures are loaded once; their sizes come from the PNGs.
+    // Draws the ground floor. Each image is loaded once and its size comes from the PNG.
     public class MapRenderer
     {
         private readonly Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
@@ -14,7 +14,7 @@ namespace UniScape.Map
 
         public MapRenderer(GraphicsDevice device)
         {
-            // Every asset file is named "<asset>.png".
+            // The file for each asset is just its name plus .png
             foreach (string asset in AllAssetNames())
             {
                 if (!_textures.ContainsKey(asset))
@@ -32,12 +32,12 @@ namespace UniScape.Map
                 _walls.AddRange(Expand(area));
             }
 
-            // Nothing moves on this map, so the furniture only needs to be sorted once.
+            // Nothing moves on the map so sorting the furniture once is enough
             _furniture = MapLayout.SortByBottom(GroundFloorMap.Furniture, asset => _textures[asset].Height);
         }
 
-        // Draw order: ground, effects, walls, things on the walls, then the furniture
-        // sorted by its bottom edge. Inside each layer, the order of floor.xml is kept.
+        // Drawing order is ground, effects, walls, stuff on the walls, then the furniture
+        // sorted by its bottom edge. Inside each layer we keep the floor.xml order.
         public void Draw(SpriteBatch spriteBatch)
         {
             DrawAll(spriteBatch, _ground);

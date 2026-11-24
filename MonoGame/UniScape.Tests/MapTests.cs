@@ -37,7 +37,7 @@ public class MapTests
         {
             new Placement("lockers", 40, 400),   // bottom 470
             new Placement("desk", 80, 196),      // bottom 256
-            new Placement("lockers", 80, 400),   // bottom 470 (tie: stays after the first lockers)
+            new Placement("lockers", 80, 400),   // also 470, so it has to stay after the first lockers
         };
         var heights = new Dictionary<string, int> { ["lockers"] = 70, ["desk"] = 60 };
 

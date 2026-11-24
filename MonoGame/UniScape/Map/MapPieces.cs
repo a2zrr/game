@@ -1,10 +1,9 @@
 namespace UniScape.Map
 {
-    // One picture placed on the map. X, Y = top-left corner in pixels.
+    // One image placed on the map, X and Y are its top-left corner in pixels
     public record Placement(string Asset, int X, int Y);
 
-    // A picture repeated in a rectangle: "Columns" times to the right and "Rows" times down,
-    // starting at (X, Y). The step is the picture's own width and height.
-    // A single wall is simply an area of 1 x 1.
+    // One image repeated Columns times to the right and Rows times down, starting at X, Y.
+    // Each step is the size of the image itself. A single wall is just a 1 x 1 area.
     public record Area(string Asset, int X, int Y, int Columns, int Rows);
 }

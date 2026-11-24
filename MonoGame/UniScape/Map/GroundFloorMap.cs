@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework;
 
 namespace UniScape.Map
 {
-    // The ground floor, written by hand from the positions in floor.xml (the XML is not loaded).
-    // Only the fixed decor is here: no student, no guards, no key, no coffee, no camera.
-    // Each list keeps the order of floor.xml, because that order matters when drawing.
+    // The ground floor, copied by hand from the positions in floor.xml. The XML isn't loaded.
+    // Only the decor that never moves is here, so no student, guards, key, coffee or camera.
+    // Each list keeps the floor.xml order because the drawing order depends on it.
     public static class GroundFloorMap
     {
-        // Where the student starts: <player asset="player" x="1000" y="476"/> in floor.xml
-        // (at the end of the corridor, next to the stairs).
+        // Where the student spawns, same as the player entry in floor.xml.
+        // It's at the end of the corridor, next to the stairs.
         public static readonly Vector2 PlayerStart = new Vector2(1000, 476);
 
         public static readonly List<Area> Ground = new List<Area>
@@ -56,18 +56,18 @@ namespace UniScape.Map
 
         public static readonly List<Area> Walls = new List<Area>
         {
-            // wall tops: north wall (exit in the middle), south wall
+            // wall tops of the north wall, with the exit in the middle, and the south wall
             new Area("wall_top", 0, 0, 14, 1),
             new Area("wall_top", 680, 0, 15, 1),
             new Area("wall_top", 0, 680, 32, 1),
 
-            // wall tops: between the classrooms and the corridor
+            // wall tops between the classrooms and the corridor
             new Area("wall_top", 0, 360, 5, 1),
             new Area("wall_top", 240, 360, 5, 1),
             new Area("wall_top", 800, 360, 5, 1),
             new Area("wall_top", 1040, 360, 6, 1),
 
-            // wall tops: the side walls
+            // wall tops of the side walls
             new Area("wall_top", 0, 40, 1, 8),
             new Area("wall_top", 400, 40, 1, 8),
             new Area("wall_top", 800, 40, 1, 8),
@@ -75,14 +75,14 @@ namespace UniScape.Map
             new Area("wall_top", 0, 400, 1, 7),
             new Area("wall_top", 1240, 400, 1, 7),
 
-            // classroom A: back wall
+            // back wall of classroom A
             new Area("wall_corner_inner_left", 40, 40, 1, 1),
             new Area("wall_window", 80, 40, 1, 1),
             new Area("wall_front", 120, 40, 5, 1),
             new Area("wall_window", 320, 40, 1, 1),
             new Area("wall_corner_inner_right", 360, 40, 1, 1),
 
-            // entrance hall: back wall, on both sides of the exit
+            // back wall of the entrance hall, on both sides of the exit
             new Area("wall_corner_inner_left", 440, 40, 1, 1),
             new Area("wall_window", 480, 40, 1, 1),
             new Area("wall_front", 520, 40, 1, 1),
@@ -90,14 +90,14 @@ namespace UniScape.Map
             new Area("wall_window", 720, 40, 1, 1),
             new Area("wall_corner_inner_right", 760, 40, 1, 1),
 
-            // classroom B: back wall
+            // back wall of classroom B
             new Area("wall_corner_inner_left", 840, 40, 1, 1),
             new Area("wall_window", 880, 40, 1, 1),
             new Area("wall_front", 920, 40, 6, 1),
             new Area("wall_window", 1160, 40, 1, 1),
             new Area("wall_corner_inner_right", 1200, 40, 1, 1),
 
-            // corridor: wall of classroom A, with its door
+            // corridor side of classroom A, with its door
             new Area("wall_corner_inner_left", 40, 400, 1, 1),
             new Area("wall_front", 80, 400, 2, 1),
             new Area("wall_corner_outer_right", 160, 400, 1, 1),
@@ -106,7 +106,7 @@ namespace UniScape.Map
             new Area("wall_front", 280, 400, 3, 1),
             new Area("wall_corner_outer_right", 400, 400, 1, 1),
 
-            // corridor: wall of classroom B, with its door
+            // corridor side of classroom B, with its door
             new Area("wall_corner_outer_left", 800, 400, 1, 1),
             new Area("wall_front", 840, 400, 3, 1),
             new Area("wall_corner_outer_right", 960, 400, 1, 1),
@@ -118,12 +118,12 @@ namespace UniScape.Map
 
         public static readonly List<Placement> WallObjects = new List<Placement>
         {
-            // one whiteboard in each classroom (the camera is left out)
+            // one whiteboard per classroom, the camera is left out for now
             new Placement("board", 140, 50),
             new Placement("board", 960, 50),
         };
 
-        // Rooms and corridor furniture together, in the order of floor.xml.
+        // Furniture of the rooms and the corridor together, same order as floor.xml
         public static readonly List<Placement> Furniture = new List<Placement>
         {
             // Classroom A
@@ -149,7 +149,7 @@ namespace UniScape.Map
             new Placement("desk", 1134, 196),
             new Placement("desk", 1134, 280),
 
-            // Corridor: lockers, break corner and stairs
+            // Corridor with the lockers, the break corner and the stairs
             new Placement("lockers", 40, 400),
             new Placement("lockers", 80, 400),
             new Placement("lockers", 120, 400),
