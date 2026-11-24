@@ -21,6 +21,7 @@
       <xs:element name="items" type="Items" />
       <xs:element name="characters" type="Characters"/>
     </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
   </xs:complexType>
 
 
